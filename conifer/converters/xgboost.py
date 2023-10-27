@@ -11,8 +11,7 @@ def convert(bdt : Union[xgb.core.Booster, xgb.XGBClassifier, xgb.XGBRegressor]):
     elif isinstance(bdt, (xgb.XGBClassifier, xgb.XGBRegressor)):
       bst = bdt.get_booster()
     meta = json.loads(bst.save_config())
-    updater = meta.get('learner').get('gradient_booster').get('gbtree_train_param').get('updater').split(',')[0]
-    max_depth = int(meta.get('learner').get('gradient_booster').get('updater').get(updater).get('train_param').get('max_depth'))
+    max_depth = int(meta.get('learner').get('gradient_booster').get('tree_train_param').get('max_depth'))
     n_classes = int(meta.get('learner').get('learner_model_param').get('num_class'))
     fn_classes = 1 if n_classes == 0 else n_classes # the number of learners
     n_classes = 2 if n_classes == 0 else n_classes # the actual number of classes
