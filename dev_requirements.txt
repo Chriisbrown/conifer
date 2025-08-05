@@ -4,6 +4,6 @@ scipy
 onnxmltools
 scikit-learn
 xgboost<2.0.0
-pybind11
+pybind11==2.13.6 
 ydf
 pandas

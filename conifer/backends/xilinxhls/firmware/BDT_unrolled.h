@@ -92,7 +92,8 @@ public:
         // Multiply input x by weight vector, axis aligned uses a one hot encoded weight
         // Oblique uses a variable weight per feature
         for(int i_feat = 0; i_feat < n_features; i_feat++ ){
-          accumulation += x[i_feat] * weight[i][i_feat];
+          // NOTE: change this depending on the quantization mode set in ydf_oblique.py
+          accumulation += x[i_feat] << weight[i][i_feat];
         }
         comparison[i] = split_fn(&accumulation, &threshold[i]);
       }else{
